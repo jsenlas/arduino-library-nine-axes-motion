@@ -58,7 +58,7 @@ void setup() //This code is executed once
   Serial.begin(115200);           //Initialize the Serial Port to view information on the Serial Monitor
   I2C.begin();                    //Initialize I2C communication to the let the library communicate with the sensor.
   //Sensor Initialization
-  mySensor.initSensor();          //The I2C Address can be changed here inside this function in the library
+  mySensor.initSensor(0x28, 2, 7);          //The I2C Address can be changed here inside this function in the library
   mySensor.setOperationMode(OPERATION_MODE_NDOF);   //Can be configured to other operation modes as desired
   mySensor.setUpdateMode(MANUAL);	//The default is AUTO. Changing to manual requires calling the relevant update functions prior to calling the read functions
   //Setting to MANUAL requires lesser reads to the sensor
@@ -74,11 +74,11 @@ void setup() //This code is executed once
   Serial.println(mySensor.readAccelPowerMode());
   Serial.println("Streaming in ...");	//Countdown
   Serial.print("3...");
-  delay(1000);	//Wait for a second
+  delay(300);	//Wait for a second
   Serial.print("2...");
-  delay(1000);	//Wait for a second
+  delay(300);	//Wait for a second
   Serial.println("1...");
-  delay(1000);	//Wait for a second
+  delay(300);	//Wait for a second
 }
 
 void loop() //This code is looped forever
@@ -110,33 +110,6 @@ void loop() //This code is looped forever
     Serial.print(" aZ: ");
     Serial.print(mySensor.readAccelerometer(Z_AXIS));  //Accelerometer Z-Axis data
     Serial.print("m/s2 ");
-
-    Serial.print("      lX: ");
-    Serial.print(mySensor.readLinearAcceleration(X_AXIS)); //Linear Acceleration X-Axis data
-    Serial.print("m/s2 ");
-
-    Serial.print(" lY: ");
-    Serial.print(mySensor.readLinearAcceleration(Y_AXIS));  //Linear Acceleration Y-Axis data
-    Serial.print("m/s2 ");
-
-    Serial.print(" lZ: ");
-    Serial.print(mySensor.readLinearAcceleration(Z_AXIS));  //Linear Acceleration Z-Axis data
-    Serial.print("m/s2 ");
-
-    Serial.print("      gX: ");
-    Serial.print(mySensor.readGravAcceleration(X_AXIS)); //Gravity Acceleration X-Axis data
-    Serial.print("m/s2 ");
-
-    Serial.print(" gY: ");
-    Serial.print(mySensor.readGravAcceleration(Y_AXIS));  //Gravity Acceleration Y-Axis data
-    Serial.print("m/s2 ");
-
-    Serial.print(" gZ: ");
-    Serial.print(mySensor.readGravAcceleration(Z_AXIS));  //Gravity Acceleration Z-Axis data
-    Serial.print("m/s2 ");
-
-    Serial.print("      C: ");
-    Serial.print(mySensor.readAccelCalibStatus());  //Accelerometer Calibration Status (0 - 3)
 
     Serial.println();
 
